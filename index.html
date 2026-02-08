@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propose Day</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffc0cb; /* Pink background */
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        h1 { color: #d63384; }
+
+        .btn {
+            background-color: #d63384;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+            margin: 10px;
+        }
+
+        /* Rose Animation */
+        .rose {
+            position: absolute;
+            font-size: 30px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="screen1" class="container">
+        <h1>Hi there, it's PROPOSE DAY today 🌹</h1>
+        <hr>
+        <button class="btn" onclick="showScreen2()">click to continue</button>
+    </div>
+
+    <div id="screen2" class="container" style="display:none;">
+        <h1>WILL YOU BE MY GIRLFRIEND?</h1>
+        <button class="btn" onclick="sayYes()">Yes</button>
+        <button class="btn" onclick="alert('Try again? 😉')">No</button>
+    </div>
+
+    <div id="screen3" class="container" style="display:none;">
+        <h1>The sender was very nervous and he would have proposed you better if you were in Kolkata and yes he expected YES from you😋</h1>
+    </div>
+
+    <script>
+        function showScreen2() {
+            document.getElementById('screen1').style.display = 'none';
+            document.getElementById('screen2').style.display = 'block';
+        }
+
+        function sayYes() {
+            document.getElementById('screen2').style.display = 'none';
+            document.getElementById('screen3').style.display = 'block';
+        }
+
+        // Generate Floating Roses
+        function createRose() {
+            const rose = document.createElement('div');
+            rose.innerHTML = '🌹';
+            rose.classList.add('rose');
+            rose.style.left = Math.random() * 100 + 'vw';
+            rose.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(rose);
+            setTimeout(() => rose.remove(), 5000);
+        }
+        setInterval(createRose, 300);
+    </script>
+</body>
+</html>
